@@ -10,7 +10,7 @@ function InitKnockout() {
 //chrome low security mode command: chrome.exe --disable-web-security --user-data-dir=C:\Users\Richárd\AppData\Local\Google\Chrome
 
 async function LoadUsers() {
-    for (let userId = 1100; userId <= 1400; userId++) {
+    for (let userId = 1401; userId <= 1700; userId++) {
         $.get({ url: "https://ncore.cc/profile.php?id=" + userId }).done((page) => {
             let pageObject = $($.parseHTML(page)[29]);
             let userName = $(pageObject.find("#profil_nev").children()[0]).text();
@@ -20,7 +20,7 @@ async function LoadUsers() {
             let uploaded = uploadedElement.text();
             let uploadedInBytes = uploadedElement.attr('title').replace("bájt", "").replace(/\s/g, "");
             viewModel.users.push({ userId: userId, name: userName, regDate: regDate, rank: rank, uploaded: uploaded, uploadedInBytes: uploadedInBytes });
-            viewModel.sortedUsers((sortUsers()));
+            viewModel.sortedUsers(sortUsers());
         });
         await new Promise(r => setTimeout(r, 2000));
     }
