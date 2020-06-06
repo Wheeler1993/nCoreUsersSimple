@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+<script src="~/js/script.js"></script>
+
+<button onclick="$('#sortedTable').toggle()">Hide/Show sorted table</button>
+
+<div>
+    <table style="float: left;">
+        <thead>
+            <tr>
+                <th style="padding-right:20px">Nr</th>
+                <th style="padding-right:20px">Id</th>
+                <th style="padding-right:20px">User name</th>
+                <th style="padding-right:60px">Regdate</th>
+                <th style="padding-right:40px">Rank</th>
+                <th>Uploaded</th>
+                <th>Uploaded in bytes</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: users">
+            <tr>
+                <td data-bind="text: $index"></td>
+                <td data-bind="text: userId"></td>
+                <td style="padding-right:20px" data-bind="text: name"></td>
+                <td data-bind="text: regDate"></td>
+                <td data-bind="text: rank"></td>
+                <td data-bind="text: uploaded"></td>
+                <td data-bind="text: uploadedInBytes"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table id="sortedTable" style="float: right;">
+        <thead>
+            <tr>
+                <th style="padding-right:20px">Nr</th>
+                <th style="padding-right:20px">Id</th>
+                <th style="padding-right:20px">User name</th>
+                <th style="padding-right:60px">Regdate</th>
+                <th style="padding-right:40px">Rank</th>
+                <th>Uploaded</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: sortedUsers">
+            <tr>
+                <td data-bind="text: $index"></td>
+                <td data-bind="text: userId"></td>
+                <td style="padding-right:20px" data-bind="text: name"></td>
+                <td data-bind="text: regDate"></td>
+                <td data-bind="text: rank"></td>
+                <td data-bind="text: uploaded"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+   
+<script>
+    InitKnockout();
+    LoadUsers();
+</script>
+
